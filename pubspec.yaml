@@ -1,0 +1,75 @@
+name: shg_customer_app
+description: SHG Customer Banking Mobile Application
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # State Management
+  flutter_riverpod: ^2.4.0
+  riverpod_annotation: ^2.1.0
+  
+  # HTTP & Networking
+  http: ^1.1.0
+  dio: ^5.3.0
+  
+  # Firebase
+  firebase_core: ^2.24.0
+  firebase_messaging: ^14.6.0
+  firebase_analytics: ^10.7.0
+  
+  # Utilities
+  intl: ^0.19.0
+  shared_preferences: ^2.2.0
+  flutter_secure_storage: ^9.0.0
+  json_annotation: ^4.8.1
+  
+  # UI & Animations
+  cupertino_icons: ^1.0.2
+  google_fonts: ^6.1.0
+  flutter_svg: ^2.0.7
+  
+  # Local Storage
+  sqflite: ^2.3.0
+  path_provider: ^2.1.0
+  
+  # Logging
+  logger: ^2.0.0
+  
+  # Date/Time
+  timeago: ^3.4.0
+  pdf: ^3.12.0
+  printing: ^5.14.3
+  open_filex: ^4.7.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  mockito: ^5.4.4
+  build_runner: ^2.4.0
+  riverpod_generator: ^2.3.0
+  json_serializable: ^6.7.0
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/images/
+    - assets/icons/
+  
+  # Custom fonts (add actual font files to assets/fonts/)
+  # fonts:
+  #   - family: Poppins
+  #     fonts:
+  #       - asset: assets/fonts/Poppins-Regular.ttf
+  #       - asset: assets/fonts/Poppins-Bold.ttf
+  #         weight: 700
+  #       - asset: assets/fonts/Poppins-SemiBold.ttf
+  #         weight: 600
