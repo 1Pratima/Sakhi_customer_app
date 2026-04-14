@@ -14,11 +14,20 @@ class StatementService {
     required List<Transaction> transactions,
   }) async {
     final pdf = pw.Document();
+    
+    // Load a font that supports the Rupee symbol (₹)
+    final font = await PdfGoogleFonts.robotoRegular();
+    final boldFont = await PdfGoogleFonts.robotoBold();
+    final theme = pw.ThemeData.withFont(
+      base: font,
+      bold: boldFont,
+    );
 
     pdf.addPage(
       pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
         margin: const pw.EdgeInsets.all(32),
+        theme: theme,
         build: (pw.Context context) {
           return [
             // Header
@@ -69,8 +78,15 @@ class StatementService {
                   pw.Row(
                     mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                     children: [
+                      _pdfInfoRow('Principal Outstanding:', DateTimeUtils.formatCurrency(loan.principalOutstanding)),
+                      _pdfInfoRow('Interest Outstanding:', DateTimeUtils.formatCurrency(loan.interestOutstanding)),
+                    ],
+                  ),
+                  pw.Row(
+                    mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                    children: [
                       _pdfInfoRow('Total Amount Paid:', DateTimeUtils.formatCurrency(loan.totalRepayment)),
-                      _pdfInfoRow('Remaining Balance:', DateTimeUtils.formatCurrency(loan.totalOutstanding)),
+                      _pdfInfoRow('Total Remaining Balance:', DateTimeUtils.formatCurrency(loan.totalOutstanding)),
                     ],
                   ),
                   pw.Row(
@@ -98,24 +114,45 @@ class StatementService {
                   children: [
                     _pdfCell('Date', isHeader: true),
                     _pdfCell('Description', isHeader: true),
-                    _pdfCell('Type', isHeader: true),
-                    _pdfCell('Amount', isHeader: true),
+                    _pdfCell('Principal', isHeader: true),
+                    _pdfCell('Interest', isHeader: true),
+                    _pdfCell('Total', isHeader: true),
                     _pdfCell('Balance', isHeader: true),
                   ],
                 ),
                 // Table Rows
-                ...transactions.map((t) {
-                  final isDebit = t.type == TransactionType.emiPayment || t.type == TransactionType.withdrawal;
-                  return pw.TableRow(
-                    children: [
-                      _pdfCell(DateTimeUtils.formatDate(t.date)),
-                      _pdfCell(t.description),
-                      _pdfCell(t.type == TransactionType.disbursement ? 'CR' : 'DB'),
-                      _pdfCell(DateTimeUtils.formatCurrency(t.amount)),
-                      _pdfCell(DateTimeUtils.formatCurrency(t.outstandingBalance)),
-                    ],
-                  );
-                }).toList(),
+                ...(() {
+                  // Calculate running total outstanding balance
+                  // Start from the total expected repayment and subtract payments as we go
+                  double runningTotalBalance = loan.totalExpectedRepayment;
+                  
+                  // We need to process from OLDEST to NEWEST to calculate correctly,
+                  // but display from NEWEST to OLDEST.
+                  final sortedOldestFirst = List<Transaction>.from(transactions)..sort((a, b) => a.date.compareTo(b.date));
+                  final Map<String, double> balanceAtTxn = {};
+                  
+                  for (var t in sortedOldestFirst) {
+                    if (t.type == TransactionType.disbursement) {
+                      balanceAtTxn[t.id] = runningTotalBalance;
+                    } else {
+                      runningTotalBalance -= t.amount;
+                      balanceAtTxn[t.id] = runningTotalBalance;
+                    }
+                  }
+
+                  return transactions.map((t) {
+                    return pw.TableRow(
+                      children: [
+                        _pdfCell(DateTimeUtils.formatDate(t.date)),
+                        _pdfCell(t.description),
+                        _pdfCell(t.type == TransactionType.emiPayment ? DateTimeUtils.formatCurrency(t.principalPortion) : '-'),
+                        _pdfCell(t.type == TransactionType.emiPayment ? DateTimeUtils.formatCurrency(t.interestPortion) : '-'),
+                        _pdfCell(DateTimeUtils.formatCurrency(t.amount)),
+                        _pdfCell(DateTimeUtils.formatCurrency(balanceAtTxn[t.id] ?? 0.0)),
+                      ],
+                    );
+                  });
+                })(),
               ],
             ),
             

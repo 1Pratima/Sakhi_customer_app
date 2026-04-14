@@ -187,48 +187,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           maxLength: 10,
         ),
         const SizedBox(height: 20),
-        Row(
-          children: [
-            Theme(
-              data: ThemeData(unselectedWidgetColor: Colors.white70),
-              child: Checkbox(
-                value: _rememberMe,
-                onChanged: (v) => setState(() => _rememberMe = v ?? false),
-                activeColor: Colors.white,
-                checkColor: AppColors.primary,
-              ),
-            ),
-            const Text(
-              'Remember me',
-              style: TextStyle(color: Colors.white70, fontSize: 14),
-            ),
-          ],
-        ),
         const SizedBox(height: 40),
         CustomButton(
           text: 'Get Verification Code',
           isLoading: authState.isLoading,
           onPressed: _requestOTP,
           isSecondary: false,
-        ),
-        const SizedBox(height: 24),
-        Center(
-          child: RichText(
-            text: TextSpan(
-              text: "Don't have an account? ",
-              style: TextStyle(color: Colors.white.withOpacity(0.7)),
-              children: const [
-                TextSpan(
-                  text: 'Contact Branch',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              ],
-            ),
-          ),
         ),
       ],
     );

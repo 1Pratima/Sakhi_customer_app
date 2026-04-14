@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shg_customer_app/providers/account_provider.dart';
@@ -130,7 +131,9 @@ class HomeScreen extends ConsumerWidget {
                     CircleAvatar(
                       radius: 20,
                       backgroundColor: AppColors.primary.withOpacity(0.1),
-                      child: const Icon(Icons.person_outline_rounded, color: AppColors.primary),
+                      backgroundImage: (user.base64Image != null && user.base64Image!.contains('base64,'))
+                          ? MemoryImage(base64Decode(user.base64Image!.split('base64,').last.replaceAll(RegExp(r'\s+'), '')))
+                          : NetworkImage(user.profileImage) as ImageProvider,
                     ),
                   ],
                 ),
@@ -183,10 +186,12 @@ class HomeScreen extends ConsumerWidget {
                         child: loanAccounts.when(
                           data: (accounts) {
                             double totalLoan = accounts.fold(0, (sum, item) => sum + item.currentBalance);
+                            double totalOverdue = accounts.fold(0, (sum, item) => sum + item.totalOverdue);
                             return _buildDashboardCard(
                               context,
                               title: 'Total Loans',
                               value: totalLoan,
+                              overdue: totalOverdue > 0 ? totalOverdue : null,
                               icon: Icons.payments_rounded,
                               colors: AppColors.loanGradient,
                               onTap: () => ref.read(navigationIndexProvider.notifier).state = 2,
@@ -363,6 +368,7 @@ class HomeScreen extends ConsumerWidget {
     BuildContext context, {
     required String title,
     required double value,
+    double? overdue,
     required IconData icon,
     required List<Color> colors,
     required VoidCallback onTap,
@@ -390,13 +396,34 @@ class HomeScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(icon, color: Colors.white, size: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Icon(icon, color: Colors.white, size: 20),
+                ),
+                if (overdue != null)
+                   Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: Colors.red.shade400,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(
+                      'Overdue',
+                      style: TextStyle(
+                        fontSize: 9,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ),
+              ],
             ),
             const SizedBox(height: 16),
             Text(
@@ -420,6 +447,17 @@ class HomeScreen extends ConsumerWidget {
                 ),
               ),
             ),
+            if (overdue != null) ...[
+               const SizedBox(height: 4),
+               Text(
+                 'Arrears: ${DateTimeUtils.formatCurrency(overdue)}',
+                 style: TextStyle(
+                    fontSize: 10,
+                    color: Colors.white.withOpacity(0.9),
+                    fontWeight: FontWeight.w700,
+                 ),
+               ),
+            ],
             const SizedBox(height: 12),
             Row(
               children: [

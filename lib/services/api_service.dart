@@ -161,6 +161,10 @@ class ApiService {
     return _dio.get('clients/$clientId', queryParameters: {'associations': 'all'});
   }
 
+  Future<Response> getClientImage(String clientId) {
+    return _dio.get('clients/$clientId/images', queryParameters: {'output': 'base64'});
+  }
+
   // Accounts endpoints
   Future<Response> getClientAccounts(String clientId) {
     return _dio.get('clients/$clientId/accounts');

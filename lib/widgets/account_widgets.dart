@@ -363,16 +363,20 @@ class QuickActionButton extends StatelessWidget {
 
 class LoanCard extends StatelessWidget {
   final String title;
+  final String loanId;
   final double loanBalance;
   final double loanAmount;
+  final double? totalOverdue;
   final DateTime expectedEndDate;
   final VoidCallback? onTap;
 
   const LoanCard({
     Key? key,
     required this.title,
+    required this.loanId,
     required this.loanBalance,
     required this.loanAmount,
+    this.totalOverdue,
     required this.expectedEndDate,
     this.onTap,
   }) : super(key: key);
@@ -422,11 +426,11 @@ class LoanCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'Next EMI: ${DateTimeUtils.formatMonth(expectedEndDate)}',
+                        'ID: $loanId | Next EMI: ${DateTimeUtils.formatMonth(expectedEndDate)}',
                         style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.white.withOpacity(0.8),
-                          fontWeight: FontWeight.w500,
+                          fontSize: 11,
+                          color: Colors.white.withOpacity(0.9),
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ],
@@ -435,14 +439,18 @@ class LoanCard extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
+                      color: (totalOverdue != null && totalOverdue! > 0)
+                          ? Colors.red.shade400
+                          : Colors.white.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
-                      '${(progress * 100).toStringAsFixed(0)}% Paid',
+                      (totalOverdue != null && totalOverdue! > 0)
+                          ? 'OVERDUE: ${DateTimeUtils.formatCurrency(totalOverdue!)}'
+                          : '${(progress * 100).toStringAsFixed(0)}% Paid',
                       style: const TextStyle(
                         fontSize: 11,
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w900,
                         color: Colors.white,
                       ),
                     ),

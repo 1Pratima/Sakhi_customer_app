@@ -16,7 +16,21 @@ final userProfileProvider = FutureProvider<User>((ref) async {
     
     final response = await apiService.getProfile(mobileNumber);
     final json = response.data as Map<String, dynamic>;
-    return User.fromJson(json);
+    
+    String? base64Image;
+    try {
+      final clientId = json['id']?.toString() ?? json['clientId']?.toString();
+      if (clientId != null) {
+        final imageResponse = await apiService.getClientImage(clientId);
+        final rawData = imageResponse.data?.toString();
+        // Sanitize immediately to prevent FormatException
+        base64Image = rawData?.replaceAll(RegExp(r'\s+'), '');
+      }
+    } catch (_) {
+      // Ignore image fetch errors, fallback to default avatar
+    }
+
+    return User.fromJson(json, base64Image: base64Image);
   } catch (e) {
     // Escalate backend error so UI accurately reflects data absence
     rethrow;

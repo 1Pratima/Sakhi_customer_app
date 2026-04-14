@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shg_customer_app/providers/auth_provider.dart';
@@ -38,37 +39,25 @@ class ProfileScreen extends ConsumerWidget {
                 ),
                 child: Column(
                   children: [
-                    Stack(
-                      alignment: Alignment.bottomRight,
-                      children: [
-                        Container(
-                          width: 100,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.white, width: 4),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 20,
-                              ),
-                            ],
-                            image: DecorationImage(
-                              image: NetworkImage(user.profileImage),
-                              fit: BoxFit.cover,
-                            ),
+                    Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white, width: 4),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 20,
                           ),
+                        ],
+                        image: DecorationImage(
+                          image: (user.base64Image != null && user.base64Image!.contains('base64,'))
+                             ? MemoryImage(base64Decode(user.base64Image!.split('base64,').last.replaceAll(RegExp(r'\s+'), '')))
+                             : NetworkImage(user.profileImage) as ImageProvider,
+                          fit: BoxFit.cover,
                         ),
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(Icons.edit_rounded,
-                              size: 16, color: AppColors.primary),
-                        ),
-                      ],
+                      ),
                     ),
                     const SizedBox(height: 16),
                     Text(

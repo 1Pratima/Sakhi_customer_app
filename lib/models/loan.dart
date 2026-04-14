@@ -11,6 +11,7 @@ class LoanAccount {
   final double totalExpectedRepayment;
   final double totalRepayment;
   final double totalOutstanding;
+  final double totalOverdue;
   final DateTime disbursedDate;
   final double interestRate;
   final int tenureMonths;
@@ -31,6 +32,7 @@ class LoanAccount {
     required this.totalExpectedRepayment,
     required this.totalRepayment,
     required this.totalOutstanding,
+    required this.totalOverdue,
     required this.disbursedDate,
     required this.interestRate,
     required this.tenureMonths,
@@ -90,6 +92,7 @@ class LoanAccount {
       totalExpectedRepayment: parseDouble(summary['totalExpectedRepayment']),
       totalRepayment: parseDouble(summary['totalRepayment']),
       totalOutstanding: parseDouble(summary['totalOutstanding']),
+      totalOverdue: parseDouble(summary['totalOverdue']),
       disbursedDate: parseDate(timeline['actualDisbursementDate']),
       interestRate: parseDouble(json['annualInterestRate']),
       tenureMonths: json['numberOfRepayments'] as int? ?? 0,

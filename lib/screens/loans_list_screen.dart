@@ -106,34 +106,13 @@ class LoansListScreen extends ConsumerWidget {
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 12),
-                          child: Stack(
-                            children: [
-                              LoanCard(
-                                title: account.accountName,
-                                loanBalance: account.currentBalance,
-                                loanAmount: account.loanAmount,
-                                expectedEndDate: account.expectedEndDate,
-                              ),
-                              Positioned(
-                                top: 16,
-                                right: 16,
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white.withOpacity(0.25),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Text(
-                                    'ID: ${account.loanId}',
-                                    style: const TextStyle(
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
+                          child: LoanCard(
+                            title: account.accountName,
+                            loanId: account.loanId,
+                            loanBalance: account.currentBalance,
+                            loanAmount: account.loanAmount,
+                            totalOverdue: account.totalOverdue,
+                            expectedEndDate: account.expectedEndDate,
                           ),
                         ),
                       );

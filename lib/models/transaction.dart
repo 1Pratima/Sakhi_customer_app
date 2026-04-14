@@ -8,6 +8,8 @@ class Transaction {
   final String description;
   final String reference;
   final double outstandingBalance;
+  final double principalPortion;
+  final double interestPortion;
 
   Transaction({
     required this.id,
@@ -17,9 +19,9 @@ class Transaction {
     required this.description,
     required this.reference,
     required this.outstandingBalance,
+    this.principalPortion = 0.0,
+    this.interestPortion = 0.0,
   });
-
-
 
   factory Transaction.fromJson(Map<String, dynamic> json) {
     // Map transaction type correctly based on Fineract backend strings
@@ -80,11 +82,12 @@ class Transaction {
       type: parsedType,
       description: typeString.isNotEmpty ? typeString : 'Transaction',
       reference: json['loanId']?.toString() ?? json['accountId']?.toString() ?? json['savingsId']?.toString() ?? '',
+      principalPortion: parseDouble(json['principalPortion']),
+      interestPortion: parseDouble(json['interestPortion']),
     );
   }
 
-  /// Factory specifically for savings account transactions from
-  /// GET /savingsaccounts/{id}?associations=all
+  /// Factory specifically for savings account transactions
   factory Transaction.fromSavingsJson(Map<String, dynamic> json) {
     double parseDouble(dynamic value) {
       if (value == null) return 0.0;
@@ -94,7 +97,6 @@ class Transaction {
       return 0.0;
     }
 
-    // Parse date array [yyyy, mm, dd]
     DateTime parsedDate = DateTime.now();
     try {
       final dateVal = json['date'];
@@ -107,7 +109,6 @@ class Transaction {
       }
     } catch (_) {}
 
-    // Transaction type from nested object
     final txTypeObj = json['transactionType'];
     final typeValue = (txTypeObj is Map) ? (txTypeObj['value']?.toString() ?? '') : '';
 
@@ -149,5 +150,7 @@ class Transaction {
     'date': date.toIso8601String(),
     'outstandingBalance': outstandingBalance,
     'reference': reference,
+    'principalPortion': principalPortion,
+    'interestPortion': interestPortion,
   };
 }

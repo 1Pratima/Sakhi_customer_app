@@ -6,6 +6,7 @@ class User {
   final String accountNumber;
   final String memberType;
   final String profileImage;
+  final String? base64Image;
   final bool isActive;
   final DateTime joinedDate;
   final String? sakhiName;
@@ -19,13 +20,14 @@ class User {
     required this.accountNumber,
     required this.memberType,
     required this.profileImage,
+    this.base64Image,
     required this.isActive,
     required this.joinedDate,
     this.sakhiName,
     this.sakhiPhone,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) {
+  factory User.fromJson(Map<String, dynamic> json, {String? base64Image}) {
     // Parse Fineract date arrays for activationDate
     DateTime parsedDate = DateTime.now();
     if (json['activationDate'] is List) {
@@ -37,7 +39,7 @@ class User {
       parsedDate = DateTime.tryParse(json['activationDate'].toString()) ?? parsedDate;
     }
     
-    // Construct profile image URL if imageId is present, else placeholder
+    // Construct profile image URL if no base64Image
     String imageUrl = 'https://ui-avatars.com/api/?name=User&background=random';
     final name = json['displayName']?.toString() ?? json['clientName']?.toString() ?? json['firstname']?.toString() ?? 'Member';
     if (name != 'Member') {
@@ -52,6 +54,7 @@ class User {
       accountNumber: json['accountNo']?.toString() ?? '',
       memberType: json['status']?['value']?.toString() ?? 'Active',
       profileImage: imageUrl,
+      base64Image: base64Image,
       isActive: json['active'] as bool? ?? true,
       joinedDate: parsedDate,
       sakhiName: '',

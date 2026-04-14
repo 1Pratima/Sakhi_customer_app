@@ -5,7 +5,6 @@ import 'package:shg_customer_app/utils/theme.dart';
 import 'package:shg_customer_app/utils/formatters.dart';
 import 'package:shg_customer_app/widgets/common_widgets.dart';
 import 'package:shg_customer_app/screens/loan_schedule_screen.dart';
-import 'package:shg_customer_app/services/statement_service.dart';
 import 'package:shg_customer_app/providers/transaction_provider.dart';
 
 class LoanDetailsScreen extends ConsumerWidget {
@@ -240,48 +239,6 @@ class LoanDetailsScreen extends ConsumerWidget {
                             ),
                             textStyle: const TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 15,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      SizedBox(
-                        width: double.infinity,
-                        child: OutlinedButton.icon(
-                          onPressed: () async {
-                            try {
-                              showLoadingDialog(context, 'Generating Statement...');
-                              
-                              final transactionList = await ref.read(transactionHistoryProvider.future);
-                              final loanTxns = transactionList.where((t) => t.reference == loanId).toList();
-                              
-                              if (context.mounted) Navigator.pop(context); // Close dialog
-
-                              await StatementService.generateLoanStatement(
-                                loan: loan,
-                                transactions: loanTxns,
-                              );
-                            } catch (e) {
-                              if (context.mounted) {
-                                Navigator.pop(context);
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text('Failed to generate statement: $e')),
-                                );
-                              }
-                            }
-                          },
-                          icon: const Icon(Icons.download_rounded, size: 20),
-                          label: const Text('Download Statement'),
-                          style: OutlinedButton.styleFrom(
-                            foregroundColor: AppColors.primary,
-                            side: BorderSide(color: AppColors.primary.withOpacity(0.4)),
-                            padding: const EdgeInsets.symmetric(vertical: 14),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            textStyle: const TextStyle(
-                              fontWeight: FontWeight.w600,
                               fontSize: 15,
                             ),
                           ),
