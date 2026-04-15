@@ -57,14 +57,13 @@ class HomeScreen extends ConsumerWidget {
                     width: 44,
                     height: 44,
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.white.withOpacity(0.1)),
-                    ),
-                    child: const Icon(
-                      Icons.account_balance_rounded,
                       color: Colors.white,
-                      size: 24,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: const EdgeInsets.all(4),
+                    child: Image.asset(
+                      'assets/images/app_logo.jpg',
+                      fit: BoxFit.contain,
                     ),
                   ),
                   const SizedBox(width: 14),
@@ -263,6 +262,17 @@ class HomeScreen extends ConsumerWidget {
                                   color: AppColors.textDark,
                                 ),
                               ),
+                              if (user.sakhiId != null) ...[
+                                const SizedBox(height: 1),
+                                Text(
+                                  'ID: ${user.sakhiId}',
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    color: AppColors.primary,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
                               const SizedBox(height: 2),
                               Text(
                                 'Community Leader',
@@ -272,6 +282,17 @@ class HomeScreen extends ConsumerWidget {
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
+                              if (user.sakhiPhone != null && user.sakhiPhone!.isNotEmpty) ...[
+                                const SizedBox(height: 2),
+                                Text(
+                                  user.sakhiPhone!,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    color: AppColors.textDark,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ],
                             ],
                           ),
                           const Spacer(),

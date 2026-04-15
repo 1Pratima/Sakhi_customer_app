@@ -9,6 +9,9 @@ final apiServiceProvider = Provider((ref) => ApiService());
 
 final firebaseServiceProvider = Provider((ref) {
   final service = FirebaseService();
+  final apiService = ref.read(apiServiceProvider);
+  service.setApiService(apiService);
+  
   // Initialize Firebase in background
   Future.delayed(const Duration(milliseconds: 500), () {
     service.initialize().catchError((e) {

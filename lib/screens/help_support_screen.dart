@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shg_customer_app/providers/user_provider.dart';
 import 'package:shg_customer_app/utils/theme.dart';
 
-class HelpSupportScreen extends StatefulWidget {
+class HelpSupportScreen extends ConsumerStatefulWidget {
   const HelpSupportScreen({Key? key}) : super(key: key);
 
   @override
-  State<HelpSupportScreen> createState() => _HelpSupportScreenState();
+  ConsumerState<HelpSupportScreen> createState() => _HelpSupportScreenState();
 }
 
-class _HelpSupportScreenState extends State<HelpSupportScreen> {
+class _HelpSupportScreenState extends ConsumerState<HelpSupportScreen> {
   int? _expandedIndex;
 
   static const List<Map<String, String>> _faqs = [
@@ -277,30 +279,57 @@ class _HelpSupportScreenState extends State<HelpSupportScreen> {
                               color: AppColors.primary, size: 24),
                         ),
                         const SizedBox(width: 14),
-                        const Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Still need help?',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w800,
-                                color: AppColors.textDark,
+                        ref.watch(userProfileProvider).when(
+                          data: (user) => Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                user.sakhiName ?? 'Still need help?',
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w800,
+                                  color: AppColors.textDark,
+                                ),
                               ),
-                            ),
-                            SizedBox(height: 2),
-                            Text(
-                              'Contact your Sakhi or branch office',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: AppColors.textLight,
-                                fontWeight: FontWeight.w500,
+                              const SizedBox(height: 2),
+                              Text(
+                                user.sakhiPhone != null && user.sakhiPhone!.isNotEmpty
+                                    ? 'Sakhi: ${user.sakhiPhone}'
+                                    : 'Contact your Sakhi or branch office',
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  color: AppColors.textLight,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
+                          loading: () => const Text('Loading contact...'),
+                          error: (_, __) => const Text('Still need help?'),
                         ),
                       ],
                     ),
+                    if (ref.watch(userProfileProvider).value?.sakhiPhone != null)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton.icon(
+                            onPressed: () {},
+                            icon: const Icon(Icons.phone_in_talk_rounded, size: 18),
+                            label: const Text('Call Sakhi'),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.primary,
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              elevation: 0,
+                            ),
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               ),

@@ -127,6 +127,14 @@ class ProfileScreen extends ConsumerWidget {
                             'Your Sakhi',
                             user.sakhiName!,
                           ),
+                          if (user.sakhiId != null) ...[
+                            const Divider(height: 1),
+                            _buildProfileItem(
+                              Icons.badge_outlined,
+                              'Sakhi ID',
+                              user.sakhiId!,
+                            ),
+                          ],
                           const Divider(height: 1),
                           _buildProfileItem(
                             Icons.phone_rounded,

@@ -201,11 +201,32 @@ class ApiService {
 
   // Notifications endpoints
   Future<Response> getNotifications() {
-    return _dio.get('/notifications');
+    return _dio.get('notifications');
   }
 
-  Future<Response> markNotificationAsRead(String id) {
-    return _dio.put('/notifications/$id/read');
+  Future<Response> markNotificationAsRead(int id) {
+    return _dio.put('notifications/$id', data: {'isRead': true});
+  }
+
+  // Staff (Sakhi) endpoints
+  Future<Response> getStaffDetails(String staffId) {
+    return _dio.get('staff/$staffId');
+  }
+
+  Future<Response> registerDeviceToken({
+    required String clientId,
+    required String appUserId,
+    required String fcmToken,
+    required String deviceId,
+    String platform = 'mobile',
+  }) {
+    return _dio.post('notifications/register-device', data: {
+      'clientId': clientId,
+      'appUserId': appUserId,
+      'platform': platform,
+      'deviceId': deviceId,
+      'fcmToken': fcmToken,
+    });
   }
 
   void clearToken() async {

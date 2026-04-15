@@ -3,7 +3,7 @@ class Env {
   // Supports build-time override: --dart-define=API_BASE=https://your-url.com
   static const apiBase = String.fromEnvironment(
     'API_BASE',
-    defaultValue: 'https://13.127.214.43:8443/fineract-provider/api/v1',
+    defaultValue: 'https://navachetana.co.in/backend/fineract-provider/api/v1',
   );
 
   // Allow self-signed/invalid TLS certs. OFF by default; enable only for

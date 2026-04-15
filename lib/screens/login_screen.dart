@@ -113,16 +113,23 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 // Logo or Icon
                 Center(
                   child: Container(
-                    width: 70,
-                    height: 70,
+                    width: 140,
+                    height: 140,
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: const Icon(
-                      Icons.account_balance_rounded,
                       color: Colors.white,
-                      size: 36,
+                      borderRadius: BorderRadius.circular(24),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 20,
+                          offset: const Offset(0, 10),
+                        ),
+                      ],
+                    ),
+                    padding: const EdgeInsets.all(12),
+                    child: Image.asset(
+                      'assets/images/app_logo.jpg',
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),

@@ -13,6 +13,7 @@ import 'package:shg_customer_app/screens/savings_accounts_list_screen.dart';
 import 'package:shg_customer_app/screens/loans_list_screen.dart';
 import 'package:shg_customer_app/utils/theme.dart';
 import 'package:shg_customer_app/utils/constants.dart';
+import 'package:shg_customer_app/providers/service_providers.dart';
 import 'package:shg_customer_app/providers/navigation_provider.dart';
 
 class MyHttpOverrides extends HttpOverrides {
@@ -44,6 +45,9 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Initialize Firebase Services early
+    ref.watch(firebaseServiceProvider);
+    
     final authState = ref.watch(authStateProvider);
 
     return MaterialApp(
