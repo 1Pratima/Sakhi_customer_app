@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shg_customer_app/utils/theme.dart';
-import 'package:shg_customer_app/utils/formatters.dart';
-import 'package:shg_customer_app/widgets/common_widgets.dart';
-import 'package:shg_customer_app/providers/service_providers.dart';
+import 'package:com.navajyoti.app/utils/theme.dart';
+import 'package:com.navajyoti.app/utils/formatters.dart';
+import 'package:com.navajyoti.app/widgets/common_widgets.dart';
+import 'package:com.navajyoti.app/providers/service_providers.dart';
 
 // Provider that fetches loan detail with full schedule
 final loanScheduleProvider =

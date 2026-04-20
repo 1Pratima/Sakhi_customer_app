@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shg_customer_app/services/api_service.dart';
-import 'package:shg_customer_app/services/firebase_service.dart';
-import 'package:shg_customer_app/services/secure_storage_service.dart';
+import 'package:com.navajyoti.app/services/api_service.dart';
+import 'package:com.navajyoti.app/services/firebase_service.dart';
+import 'package:com.navajyoti.app/services/secure_storage_service.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 // Service providers

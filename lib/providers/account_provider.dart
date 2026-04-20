@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shg_customer_app/models/account.dart';
-import 'package:shg_customer_app/models/loan.dart';
-import 'package:shg_customer_app/providers/service_providers.dart';
-import 'package:shg_customer_app/providers/auth_provider.dart';
-import 'package:shg_customer_app/providers/user_provider.dart';
+import 'package:com.navajyoti.app/models/account.dart';
+import 'package:com.navajyoti.app/models/loan.dart';
+import 'package:com.navajyoti.app/providers/service_providers.dart';
+import 'package:com.navajyoti.app/providers/auth_provider.dart';
+import 'package:com.navajyoti.app/providers/user_provider.dart';
 
 // Savings accounts provider with fallback demo data
 final savingsAccountsProvider =

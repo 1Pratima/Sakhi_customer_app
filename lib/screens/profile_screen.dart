@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shg_customer_app/providers/auth_provider.dart';
-import 'package:shg_customer_app/providers/user_provider.dart';
-import 'package:shg_customer_app/utils/theme.dart';
-import 'package:shg_customer_app/utils/formatters.dart';
-import 'package:shg_customer_app/widgets/common_widgets.dart';
-import 'package:shg_customer_app/screens/notifications_screen.dart';
-import 'package:shg_customer_app/screens/help_support_screen.dart';
+import 'package:com.navajyoti.app/providers/auth_provider.dart';
+import 'package:com.navajyoti.app/providers/user_provider.dart';
+import 'package:com.navajyoti.app/utils/theme.dart';
+import 'package:com.navajyoti.app/utils/formatters.dart';
+import 'package:com.navajyoti.app/widgets/common_widgets.dart';
+import 'package:com.navajyoti.app/screens/notifications_screen.dart';
+import 'package:com.navajyoti.app/screens/help_support_screen.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -52,9 +52,14 @@ class ProfileScreen extends ConsumerWidget {
                           ),
                         ],
                         image: DecorationImage(
-                          image: (user.base64Image != null && user.base64Image!.contains('base64,'))
-                             ? MemoryImage(base64Decode(user.base64Image!.split('base64,').last.replaceAll(RegExp(r'\s+'), '')))
-                             : NetworkImage(user.profileImage) as ImageProvider,
+                          image: (user.base64Image != null &&
+                                  user.base64Image!.contains('base64,'))
+                              ? MemoryImage(base64Decode(user.base64Image!
+                                  .split('base64,')
+                                  .last
+                                  .replaceAll(RegExp(r'\s+'), '')))
+                              : NetworkImage(user.profileImage)
+                                  as ImageProvider,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -110,8 +115,8 @@ class ProfileScreen extends ConsumerWidget {
                         _buildProfileItem(
                             Icons.phone_android_rounded, 'Phone', user.phone),
                         const Divider(height: 1),
-                        _buildProfileItem(Icons.numbers_rounded,
-                            'Account No', user.accountNumber),
+                        _buildProfileItem(Icons.numbers_rounded, 'Account No',
+                            user.accountNumber),
                       ],
                     ),
                   ),
@@ -176,7 +181,7 @@ class ProfileScreen extends ConsumerWidget {
                           context,
                           Icons.info_outline_rounded,
                           'About App',
-                          'Version 1.0.0 (Build 12)',
+                          'Version 1.0.3 (Build 12)',
                           () {},
                         ),
                       ],
@@ -274,4 +279,3 @@ class ProfileScreen extends ConsumerWidget {
     );
   }
 }
-

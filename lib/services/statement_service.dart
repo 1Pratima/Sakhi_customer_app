@@ -4,9 +4,9 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:shg_customer_app/models/loan.dart';
-import 'package:shg_customer_app/models/transaction.dart';
-import 'package:shg_customer_app/utils/formatters.dart';
+import 'package:com.navajyoti.app/models/loan.dart';
+import 'package:com.navajyoti.app/models/transaction.dart';
+import 'package:com.navajyoti.app/utils/formatters.dart';
 
 class StatementService {
   static Future<void> generateLoanStatement({
@@ -37,7 +37,7 @@ class StatementService {
                 pw.Column(
                   crossAxisAlignment: pw.CrossAxisAlignment.start,
                   children: [
-                    pw.Text('SHG Customer App',
+                    pw.Text('Navajyoti',
                         style: pw.TextStyle(
                             fontSize: 24, fontWeight: pw.FontWeight.bold, color: PdfColors.blue800)),
                     pw.Text('Loan Statement',

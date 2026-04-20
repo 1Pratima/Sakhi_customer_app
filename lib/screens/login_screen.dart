@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shg_customer_app/providers/auth_provider.dart';
-import 'package:shg_customer_app/utils/theme.dart';
-import 'package:shg_customer_app/widgets/common_widgets.dart';
+import 'package:com.navajyoti.app/providers/auth_provider.dart';
+import 'package:com.navajyoti.app/utils/theme.dart';
+import 'package:com.navajyoti.app/widgets/common_widgets.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -146,7 +146,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 const SizedBox(height: 40),
                 Center(
                   child: Text(
-                    'SHG Customer Application v1.0',
+                    'Navajyoti Customer Application v1.0',
                     style: TextStyle(
                       color: Colors.white.withOpacity(0.5),
                       fontSize: 12,
@@ -177,7 +177,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         ),
         const SizedBox(height: 10),
         Text(
-          'Sign in to your SHG banking account',
+          'Sign in to your Navajyoti banking account',
           style: TextStyle(
             fontSize: 16,
             color: Colors.white.withOpacity(0.7),

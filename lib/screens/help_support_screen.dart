@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shg_customer_app/providers/user_provider.dart';
-import 'package:shg_customer_app/utils/theme.dart';
+import 'package:com.navajyoti.app/providers/user_provider.dart';
+import 'package:com.navajyoti.app/utils/theme.dart';
 
 class HelpSupportScreen extends ConsumerStatefulWidget {
   const HelpSupportScreen({Key? key}) : super(key: key);

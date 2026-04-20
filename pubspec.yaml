@@ -1,8 +1,8 @@
-name: shg_customer_app
+name: com.navajyoti.app
 description: SHG Customer Banking Mobile Application
 publish_to: 'none'
 
-version: 1.0.0+1
+version: 1.0.3+3
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -57,6 +57,13 @@ dev_dependencies:
   build_runner: ^2.4.0
   riverpod_generator: ^2.3.0
   json_serializable: ^6.7.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/app_logo.jpg"
+  min_sdk_android: 21
 
 flutter:
   uses-material-design: true

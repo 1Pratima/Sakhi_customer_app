@@ -77,7 +77,7 @@ lib/
 1. **Clone the project** (if from Git):
    ```bash
    git clone <repository-url>
-   cd shg_customer_app
+   cd Navajyoti_Customer_App
    ```
 
 2. **Get dependencies**:

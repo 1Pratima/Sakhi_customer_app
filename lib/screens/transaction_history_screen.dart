@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shg_customer_app/providers/transaction_provider.dart';
-import 'package:shg_customer_app/providers/account_provider.dart';
-import 'package:shg_customer_app/models/transaction.dart';
-import 'package:shg_customer_app/utils/theme.dart';
-import 'package:shg_customer_app/utils/formatters.dart';
-import 'package:shg_customer_app/widgets/common_widgets.dart';
-import 'package:shg_customer_app/widgets/account_widgets.dart';
+import 'package:com.navajyoti.app/providers/transaction_provider.dart';
+import 'package:com.navajyoti.app/providers/account_provider.dart';
+import 'package:com.navajyoti.app/models/transaction.dart';
+import 'package:com.navajyoti.app/utils/theme.dart';
+import 'package:com.navajyoti.app/utils/formatters.dart';
+import 'package:com.navajyoti.app/widgets/common_widgets.dart';
+import 'package:com.navajyoti.app/widgets/account_widgets.dart';
 
 class TransactionHistoryScreen extends ConsumerWidget {
   const TransactionHistoryScreen({Key? key}) : super(key: key);

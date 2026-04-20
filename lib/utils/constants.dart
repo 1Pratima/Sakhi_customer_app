@@ -1,7 +1,7 @@
 class AppConstants {
   // App info
   static const String appName = 'SHG Customer';
-  static const String appVersion = '1.0.0';
+  static const String appVersion = '1.0.2';
 
   // API
   static const String baseUrl = 'https://api.shgcustomer.com/api';

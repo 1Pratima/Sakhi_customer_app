@@ -1,20 +1,20 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shg_customer_app/utils/env.dart';
+import 'package:com.navajyoti.app/utils/env.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:shg_customer_app/providers/auth_provider.dart';
-import 'package:shg_customer_app/screens/login_screen.dart';
-import 'package:shg_customer_app/screens/home_screen.dart';
-import 'package:shg_customer_app/screens/transaction_history_screen.dart';
-import 'package:shg_customer_app/screens/notifications_screen.dart';
-import 'package:shg_customer_app/screens/profile_screen.dart';
-import 'package:shg_customer_app/screens/savings_accounts_list_screen.dart';
-import 'package:shg_customer_app/screens/loans_list_screen.dart';
-import 'package:shg_customer_app/utils/theme.dart';
-import 'package:shg_customer_app/utils/constants.dart';
-import 'package:shg_customer_app/providers/service_providers.dart';
-import 'package:shg_customer_app/providers/navigation_provider.dart';
+import 'package:com.navajyoti.app/providers/auth_provider.dart';
+import 'package:com.navajyoti.app/screens/login_screen.dart';
+import 'package:com.navajyoti.app/screens/home_screen.dart';
+import 'package:com.navajyoti.app/screens/transaction_history_screen.dart';
+import 'package:com.navajyoti.app/screens/notifications_screen.dart';
+import 'package:com.navajyoti.app/screens/profile_screen.dart';
+import 'package:com.navajyoti.app/screens/savings_accounts_list_screen.dart';
+import 'package:com.navajyoti.app/screens/loans_list_screen.dart';
+import 'package:com.navajyoti.app/utils/theme.dart';
+import 'package:com.navajyoti.app/utils/constants.dart';
+import 'package:com.navajyoti.app/providers/service_providers.dart';
+import 'package:com.navajyoti.app/providers/navigation_provider.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -47,7 +47,7 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // Initialize Firebase Services early
     ref.watch(firebaseServiceProvider);
-    
+
     final authState = ref.watch(authStateProvider);
 
     return MaterialApp(
@@ -111,7 +111,8 @@ class BottomNavigation extends ConsumerWidget {
           borderRadius: BorderRadius.circular(28),
           child: BottomNavigationBar(
             currentIndex: selectedIndex,
-            onTap: (index) => ref.read(navigationIndexProvider.notifier).state = index,
+            onTap: (index) =>
+                ref.read(navigationIndexProvider.notifier).state = index,
             type: BottomNavigationBarType.fixed,
             backgroundColor: Colors.white,
             selectedItemColor: AppColors.primary,
@@ -127,10 +128,8 @@ class BottomNavigation extends ConsumerWidget {
             elevation: 0,
             items: [
               _buildNavItem(Icons.home_rounded, Icons.home_outlined, 'Home'),
-              _buildNavItem(
-                  Icons.account_balance_wallet_rounded,
-                  Icons.account_balance_wallet_outlined,
-                  'Savings'),
+              _buildNavItem(Icons.account_balance_wallet_rounded,
+                  Icons.account_balance_wallet_outlined, 'Savings'),
               _buildNavItem(
                   Icons.payments_rounded, Icons.payments_outlined, 'Loans'),
               _buildNavItem(
@@ -163,4 +162,3 @@ class BottomNavigation extends ConsumerWidget {
     );
   }
 }
-

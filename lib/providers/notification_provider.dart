@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shg_customer_app/models/notification.dart';
-import 'package:shg_customer_app/providers/service_providers.dart';
+import 'package:com.navajyoti.app/models/notification.dart';
+import 'package:com.navajyoti.app/providers/service_providers.dart';
 
 final notificationsProvider = FutureProvider<List<NotificationModel>>((ref) async {
   final apiService = ref.read(apiServiceProvider);

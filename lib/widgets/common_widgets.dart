@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shg_customer_app/utils/theme.dart';
+import 'package:com.navajyoti.app/utils/theme.dart';
 
 class AppHeader extends StatelessWidget {
   final String title;
@@ -100,7 +100,9 @@ class CustomCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
-        color: backgroundColor ?? CardTheme.of(context).color ?? Theme.of(context).cardColor,
+        color: backgroundColor ??
+            CardTheme.of(context).color ??
+            Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(24),
         border: showBorder
             ? Border.all(color: AppColors.divider.withOpacity(0.5), width: 1)
@@ -157,7 +159,8 @@ class SectionHeader extends StatelessWidget {
             TextButton(
               onPressed: onActionPressed,
               style: TextButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                 minimumSize: Size.zero,
                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
@@ -333,4 +336,3 @@ void showLoadingDialog(BuildContext context, String message) {
     ),
   );
 }
-

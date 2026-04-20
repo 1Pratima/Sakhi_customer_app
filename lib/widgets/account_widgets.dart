@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shg_customer_app/utils/theme.dart';
-import 'package:shg_customer_app/utils/formatters.dart';
+import 'package:com.navajyoti.app/utils/theme.dart';
+import 'package:com.navajyoti.app/utils/formatters.dart';
 
 class AccountCard extends StatefulWidget {
   final String title;

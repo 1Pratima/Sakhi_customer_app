@@ -1,19 +1,19 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shg_customer_app/providers/account_provider.dart';
-import 'package:shg_customer_app/providers/user_provider.dart';
-import 'package:shg_customer_app/providers/transaction_provider.dart';
-import 'package:shg_customer_app/models/transaction.dart';
-import 'package:shg_customer_app/utils/theme.dart';
-import 'package:shg_customer_app/utils/formatters.dart';
-import 'package:shg_customer_app/widgets/common_widgets.dart';
-import 'package:shg_customer_app/widgets/account_widgets.dart';
-import 'package:shg_customer_app/screens/notifications_screen.dart';
-import 'package:shg_customer_app/screens/loans_list_screen.dart';
-import 'package:shg_customer_app/screens/savings_accounts_list_screen.dart';
-import 'package:shg_customer_app/screens/transaction_history_screen.dart';
-import 'package:shg_customer_app/providers/navigation_provider.dart';
+import 'package:com.navajyoti.app/providers/account_provider.dart';
+import 'package:com.navajyoti.app/providers/user_provider.dart';
+import 'package:com.navajyoti.app/providers/transaction_provider.dart';
+import 'package:com.navajyoti.app/models/transaction.dart';
+import 'package:com.navajyoti.app/utils/theme.dart';
+import 'package:com.navajyoti.app/utils/formatters.dart';
+import 'package:com.navajyoti.app/widgets/common_widgets.dart';
+import 'package:com.navajyoti.app/widgets/account_widgets.dart';
+import 'package:com.navajyoti.app/screens/notifications_screen.dart';
+import 'package:com.navajyoti.app/screens/loans_list_screen.dart';
+import 'package:com.navajyoti.app/screens/savings_accounts_list_screen.dart';
+import 'package:com.navajyoti.app/screens/transaction_history_screen.dart';
+import 'package:com.navajyoti.app/providers/navigation_provider.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -68,7 +68,7 @@ class HomeScreen extends ConsumerWidget {
                   ),
                   const SizedBox(width: 14),
                   const Text(
-                    'SHG Customer App',
+                    'Navajyoti',
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w800,

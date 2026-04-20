@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shg_customer_app/models/auth_response.dart';
-import 'package:shg_customer_app/providers/service_providers.dart';
+import 'package:com.navajyoti.app/models/auth_response.dart';
+import 'package:com.navajyoti.app/providers/service_providers.dart';
 
 // Auth state
 final authStateProvider = StateNotifierProvider<AuthNotifier, AuthState>(

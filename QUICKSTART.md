@@ -24,7 +24,7 @@ Before you begin, ensure you have installed:
 git clone <repository-url>
 
 # Navigate to project directory
-cd shg_customer_app
+cd Navajyoti_Customer_App
 
 # Get all dependencies
 flutter pub get
@@ -137,7 +137,7 @@ flutter pub run build_runner build
 ## Project Directory Structure
 
 ```
-shg_customer_app/
+Navajyoti_Customer_App/
 ├── lib/                          # Source code
 │   ├── main.dart                # Entry point
 │   ├── models/                  # Data models

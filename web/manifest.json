@@ -1,6 +1,6 @@
 {
-    "name": "shg_customer_app",
-    "short_name": "shg_customer_app",
+    "name": "com.navajyoti.app",
+    "short_name": "com.navajyoti.app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

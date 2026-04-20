@@ -1,7 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart' as fln;
 import 'package:logger/logger.dart';
-import 'package:shg_customer_app/services/api_service.dart';
+import 'package:com.navajyoti.app/services/api_service.dart';
 
 class FirebaseService {
   late FirebaseMessaging _firebaseMessaging;

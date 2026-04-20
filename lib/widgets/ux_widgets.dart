@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shg_customer_app/utils/theme.dart';
+import 'package:com.navajyoti.app/utils/theme.dart';
 
 /// Empty state widget for displaying when no data is available
 class EmptyStateWidget extends StatefulWidget {

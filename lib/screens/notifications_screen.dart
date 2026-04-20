@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shg_customer_app/providers/notification_provider.dart';
-import 'package:shg_customer_app/widgets/account_widgets.dart';
-import 'package:shg_customer_app/widgets/common_widgets.dart';
+import 'package:com.navajyoti.app/providers/notification_provider.dart';
+import 'package:com.navajyoti.app/widgets/account_widgets.dart';
+import 'package:com.navajyoti.app/widgets/common_widgets.dart';
 
 class NotificationsScreen extends ConsumerWidget {
   const NotificationsScreen({Key? key}) : super(key: key);

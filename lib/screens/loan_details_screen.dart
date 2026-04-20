@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shg_customer_app/providers/account_provider.dart';
-import 'package:shg_customer_app/utils/theme.dart';
-import 'package:shg_customer_app/utils/formatters.dart';
-import 'package:shg_customer_app/widgets/common_widgets.dart';
-import 'package:shg_customer_app/screens/loan_schedule_screen.dart';
-import 'package:shg_customer_app/providers/transaction_provider.dart';
+import 'package:com.navajyoti.app/providers/account_provider.dart';
+import 'package:com.navajyoti.app/utils/theme.dart';
+import 'package:com.navajyoti.app/utils/formatters.dart';
+import 'package:com.navajyoti.app/widgets/common_widgets.dart';
+import 'package:com.navajyoti.app/screens/loan_schedule_screen.dart';
+import 'package:com.navajyoti.app/providers/transaction_provider.dart';
 
 class LoanDetailsScreen extends ConsumerWidget {
   final String loanId;

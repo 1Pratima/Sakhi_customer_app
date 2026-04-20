@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shg_customer_app/models/user.dart';
-import 'package:shg_customer_app/providers/service_providers.dart';
-import 'package:shg_customer_app/providers/auth_provider.dart';
+import 'package:com.navajyoti.app/models/user.dart';
+import 'package:com.navajyoti.app/providers/service_providers.dart';
+import 'package:com.navajyoti.app/providers/auth_provider.dart';
 
 // User profile provider with error handling
 final userProfileProvider = FutureProvider<User>((ref) async {

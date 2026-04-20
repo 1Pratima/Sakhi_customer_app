@@ -7,7 +7,7 @@ This document outlines the complete Flutter project structure created for the SH
 ## 📁 Project Structure
 
 ```
-shg_customer_app/
+Navajyoti_Customer_App/
 │
 ├── lib/
 │   ├── main.dart                              # Application entry point
@@ -148,7 +148,7 @@ shg_customer_app/
 
 ### Step 1: Install Dependencies
 ```bash
-cd shg_customer_app
+cd Navajyoti_Customer_App
 flutter pub get
 ```
 
